@@ -1,0 +1,117 @@
+﻿# ==========================================
+# Unity Project .gitignore (2021+ / 2023+)
+# Team note:
+# Commit these: Assets/, Packages/, ProjectSettings/, and all *.meta files.
+# Ignore generated caches, local settings, and build outputs.
+# ==========================================
+
+# ---------- Unity generated folders ----------
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Ll]ogs/
+/[Bb]uild/
+/[Bb]uilds/
+/[Uu]ser[Ss]ettings/
+/[Mm]emoryCaptures/
+/[Rr]ecordings/
+
+# ---------- Unity generated / cache files ----------
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+*.unityproj
+*.sln
+*.csproj
+*.pidb.meta
+*.pdb.meta
+*.mdb.meta
+*.tmp
+*.temp
+*.cache
+*.bak
+*.orig
+
+# ---------- Build artifacts ----------
+*.apk
+*.aab
+*.apks
+*.ipa
+*.app
+*.exe
+*.msi
+*.dmg
+*.pkg
+*.xap
+*.unitypackage
+*.symbols.zip
+
+# ---------- Crash logs / dumps / profiling captures ----------
+sysinfo.txt
+*.crash
+*.dmp
+*.mdmp
+*.memsnap
+*.snap
+*.nv-gpudmp
+crash_*.log
+
+# ---------- IDE: Visual Studio ----------
+.vs/
+*.suo
+*.user
+*.userprefs
+*.rsuser
+*.sln.docstates
+*.DotSettings.user
+
+# ---------- IDE: JetBrains Rider ----------
+.idea/
+*.sln.iml
+
+# ---------- IDE: VS Code ----------
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/launch.json
+!.vscode/tasks.json
+
+# ---------- .NET / NuGet ----------
+.nuget/
+*.nupkg
+*.snupkg
+
+# ---------- Gradle / Android local ----------
+.gradle/
+local.properties
+
+# ---------- Addressables / content build outputs (if generated at repo root) ----------
+/[Ss]erver[Dd]ata/
+/[Aa]sset[Bb]undles/
+
+# ---------- OS junk: macOS ----------
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# ---------- OS junk: Windows ----------
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# ---------- OS junk: Linux ----------
+*~
+
+# ---------- Optional secrets/signing (recommended ignore) ----------
+*.keystore
+*.jks
+*.p12
+*.mobileprovision
