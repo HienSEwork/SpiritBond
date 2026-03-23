@@ -59178,13 +59178,37 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC_Random
       objectReference: {fileID: 0}
+    - target: {fileID: 1710681811214105938, guid: 1c9da99d3b1685d4f974005aec3d3033, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1710681811214105938, guid: 1c9da99d3b1685d4f974005aec3d3033, type: 3}
+      propertyPath: m_TagString
+      value: NPC
+      objectReference: {fileID: 0}
+    - target: {fileID: 2155503597497394903, guid: 1c9da99d3b1685d4f974005aec3d3033, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1808498416, guid: eab4fcf06d6d9324bb9815433e4b7cdb, type: 3}
+    - target: {fileID: 2155503597497394903, guid: 1c9da99d3b1685d4f974005aec3d3033, type: 3}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2155503597497394903, guid: 1c9da99d3b1685d4f974005aec3d3033, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 148173075
+      objectReference: {fileID: 0}
+    - target: {fileID: 2155503597497394903, guid: 1c9da99d3b1685d4f974005aec3d3033, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4554837198977713428, guid: 1c9da99d3b1685d4f974005aec3d3033, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -4.1
       objectReference: {fileID: 0}
     - target: {fileID: 4554837198977713428, guid: 1c9da99d3b1685d4f974005aec3d3033, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -7.53
       objectReference: {fileID: 0}
     - target: {fileID: 4554837198977713428, guid: 1c9da99d3b1685d4f974005aec3d3033, type: 3}
       propertyPath: m_LocalPosition.z

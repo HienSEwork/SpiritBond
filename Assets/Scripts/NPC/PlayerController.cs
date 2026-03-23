@@ -6,27 +6,38 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Movement")]
     [SerializeField] private float speed = 5f;
-    [SerializeField] private MonoBehaviour movementInputSource;
 
     private Rigidbody2D rb;
     private Animator anim;
-    private IMovementInput movementInput;
 
     private Vector2 move;
     private Vector2 lastMove;
+    private int currentAnimStateHash;
 
     private static readonly int MoveXHash = Animator.StringToHash("moveX");
     private static readonly int MoveYHash = Animator.StringToHash("moveY");
     private static readonly int LastXHash = Animator.StringToHash("lastX");
     private static readonly int LastYHash = Animator.StringToHash("lastY");
+    private static readonly int WalkUpHash = Animator.StringToHash("npc_walk_up");
+    private static readonly int WalkDownHash = Animator.StringToHash("npc_walk_down");
+    private static readonly int WalkLeftHash = Animator.StringToHash("npc_walk_left");
+    private static readonly int WalkRightHash = Animator.StringToHash("npc_walk_right");
+    private static readonly int IdleUpHash = Animator.StringToHash("npc_idle_up");
+    private static readonly int IdleDownHash = Animator.StringToHash("npc_idle_down");
+    private static readonly int IdleLeftHash = Animator.StringToHash("npc_idle_left");
+    private static readonly int IdleRightHash = Animator.StringToHash("npc_idle_right");
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-
-        movementInput = ResolveInputSource();
         lastMove = Vector2.down;
+        currentAnimStateHash = IdleDownHash;
+
+        if (anim != null)
+        {
+            anim.Play(currentAnimStateHash, 0, 0f);
+        }
     }
 
     private void Update()
@@ -42,7 +53,9 @@ public class PlayerController : MonoBehaviour
 
     private void HandleInput()
     {
-        Vector2 rawInput = movementInput != null ? movementInput.GetMoveInput() : Vector2.zero;
+        float inputX = Input.GetAxisRaw("Horizontal");
+        float inputY = Input.GetAxisRaw("Vertical");
+        Vector2 rawInput = new Vector2(inputX, inputY);
 
         if (rawInput.x != 0f)
         {
@@ -70,24 +83,35 @@ public class PlayerController : MonoBehaviour
         anim.SetFloat(MoveYHash, move.y);
         anim.SetFloat(LastXHash, lastMove.x);
         anim.SetFloat(LastYHash, lastMove.y);
+
+        int targetStateHash = GetAnimationStateHash();
+        if (targetStateHash != currentAnimStateHash)
+        {
+            anim.Play(targetStateHash, 0, 0f);
+            currentAnimStateHash = targetStateHash;
+        }
     }
 
-    private IMovementInput ResolveInputSource()
+    private int GetAnimationStateHash()
     {
-        if (movementInputSource != null)
-        {
-            IMovementInput explicitSource = movementInputSource as IMovementInput;
-            if (explicitSource != null)
-                return explicitSource;
+        Vector2 direction = move != Vector2.zero ? move : lastMove;
+        bool isMoving = move != Vector2.zero;
 
-            Debug.LogError($"{name}: Assigned movementInputSource does not implement IMovementInput.", this);
+        if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
+        {
+            if (direction.x < 0f)
+            {
+                return isMoving ? WalkLeftHash : IdleLeftHash;
+            }
+
+            return isMoving ? WalkRightHash : IdleRightHash;
         }
 
-        IMovementInput localSource = GetComponent<IMovementInput>();
-        if (localSource != null)
-            return localSource;
+        if (direction.y > 0f)
+        {
+            return isMoving ? WalkUpHash : IdleUpHash;
+        }
 
-        Debug.LogWarning($"{name}: No IMovementInput found. Falling back to idle.", this);
-        return null;
+        return isMoving ? WalkDownHash : IdleDownHash;
     }
 }

@@ -4,7 +4,7 @@
 # Commit these: Assets/, Packages/, ProjectSettings/, and all *.meta files.
 # Ignore generated caches, local settings, and build outputs.
 # ==========================================
-
+.vscode/
 # ---------- Unity generated folders ----------
 /[Ll]ibrary/
 /[Tt]emp/
