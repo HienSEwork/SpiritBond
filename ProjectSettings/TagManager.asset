@@ -6,6 +6,8 @@ TagManager:
   tags:
   - NPC
   - Grass
+  - Ground
+  - UI
   layers:
   - Default
   - TransparentFX

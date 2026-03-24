@@ -4706,11 +4706,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1332791265150973165, guid: 9f93025e8cfadf549921b2e07773c997, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 17.525
+      value: -19.63
       objectReference: {fileID: 0}
     - target: {fileID: 1332791265150973165, guid: 9f93025e8cfadf549921b2e07773c997, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -10
+      value: -9.05
       objectReference: {fileID: 0}
     - target: {fileID: 1332791265150973165, guid: 9f93025e8cfadf549921b2e07773c997, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4744,9 +4744,37 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3504061982757410606, guid: 9f93025e8cfadf549921b2e07773c997, type: 3}
+      propertyPath: m_Size.x
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504061982757410606, guid: 9f93025e8cfadf549921b2e07773c997, type: 3}
+      propertyPath: m_Size.y
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504061982757410606, guid: 9f93025e8cfadf549921b2e07773c997, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1358934469, guid: c9a7d4bbeb81d3d4982944c6bd047a66, type: 3}
+    - target: {fileID: 3504061982757410606, guid: 9f93025e8cfadf549921b2e07773c997, type: 3}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504061982757410606, guid: 9f93025e8cfadf549921b2e07773c997, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 148173075
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504061982757410606, guid: 9f93025e8cfadf549921b2e07773c997, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4248195033041145003, guid: 9f93025e8cfadf549921b2e07773c997, type: 3}
       propertyPath: m_Name
       value: NPC_Quest_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4248195033041145003, guid: 9f93025e8cfadf549921b2e07773c997, type: 3}
+      propertyPath: m_TagString
+      value: NPC
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8861,11 +8889,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1332791265150973165, guid: 9f93025e8cfadf549921b2e07773c997, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 20.57
       objectReference: {fileID: 0}
     - target: {fileID: 1332791265150973165, guid: 9f93025e8cfadf549921b2e07773c997, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -31.74
       objectReference: {fileID: 0}
     - target: {fileID: 1332791265150973165, guid: 9f93025e8cfadf549921b2e07773c997, type: 3}
       propertyPath: m_LocalPosition.z
@@ -8899,9 +8927,37 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3504061982757410606, guid: 9f93025e8cfadf549921b2e07773c997, type: 3}
+      propertyPath: m_Size.x
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504061982757410606, guid: 9f93025e8cfadf549921b2e07773c997, type: 3}
+      propertyPath: m_Size.y
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504061982757410606, guid: 9f93025e8cfadf549921b2e07773c997, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1904081741, guid: bf6fc85a012648041805eeb28e940d9d, type: 3}
+    - target: {fileID: 3504061982757410606, guid: 9f93025e8cfadf549921b2e07773c997, type: 3}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504061982757410606, guid: 9f93025e8cfadf549921b2e07773c997, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 148173075
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504061982757410606, guid: 9f93025e8cfadf549921b2e07773c997, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4248195033041145003, guid: 9f93025e8cfadf549921b2e07773c997, type: 3}
       propertyPath: m_Name
       value: NPC_Quest_4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4248195033041145003, guid: 9f93025e8cfadf549921b2e07773c997, type: 3}
+      propertyPath: m_TagString
+      value: NPC
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -64602,11 +64658,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4554837198977713428, guid: 1c9da99d3b1685d4f974005aec3d3033, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.424999
+      value: -3.92
       objectReference: {fileID: 0}
     - target: {fileID: 4554837198977713428, guid: 1c9da99d3b1685d4f974005aec3d3033, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -17.53
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 4554837198977713428, guid: 1c9da99d3b1685d4f974005aec3d3033, type: 3}
       propertyPath: m_LocalPosition.z
@@ -64655,11 +64711,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1332791265150973165, guid: 9f93025e8cfadf549921b2e07773c997, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 20.98
       objectReference: {fileID: 0}
     - target: {fileID: 1332791265150973165, guid: 9f93025e8cfadf549921b2e07773c997, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.66
       objectReference: {fileID: 0}
     - target: {fileID: 1332791265150973165, guid: 9f93025e8cfadf549921b2e07773c997, type: 3}
       propertyPath: m_LocalPosition.z
@@ -64693,9 +64749,37 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3504061982757410606, guid: 9f93025e8cfadf549921b2e07773c997, type: 3}
+      propertyPath: m_Size.x
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504061982757410606, guid: 9f93025e8cfadf549921b2e07773c997, type: 3}
+      propertyPath: m_Size.y
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504061982757410606, guid: 9f93025e8cfadf549921b2e07773c997, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 909036674, guid: a6f6f50249db20f48b9ec45fb2db7183, type: 3}
+    - target: {fileID: 3504061982757410606, guid: 9f93025e8cfadf549921b2e07773c997, type: 3}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504061982757410606, guid: 9f93025e8cfadf549921b2e07773c997, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 148173075
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504061982757410606, guid: 9f93025e8cfadf549921b2e07773c997, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4248195033041145003, guid: 9f93025e8cfadf549921b2e07773c997, type: 3}
       propertyPath: m_Name
       value: NPC_Quest_3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4248195033041145003, guid: 9f93025e8cfadf549921b2e07773c997, type: 3}
+      propertyPath: m_TagString
+      value: NPC
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -65899,11 +65983,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1332791265150973165, guid: 9f93025e8cfadf549921b2e07773c997, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 25.46
       objectReference: {fileID: 0}
     - target: {fileID: 1332791265150973165, guid: 9f93025e8cfadf549921b2e07773c997, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -6.79
       objectReference: {fileID: 0}
     - target: {fileID: 1332791265150973165, guid: 9f93025e8cfadf549921b2e07773c997, type: 3}
       propertyPath: m_LocalPosition.z
@@ -65937,9 +66021,37 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3504061982757410606, guid: 9f93025e8cfadf549921b2e07773c997, type: 3}
+      propertyPath: m_Size.x
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504061982757410606, guid: 9f93025e8cfadf549921b2e07773c997, type: 3}
+      propertyPath: m_Size.y
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504061982757410606, guid: 9f93025e8cfadf549921b2e07773c997, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 637193997, guid: 7f0c384a8dcc90f4a8e07ea535b74681, type: 3}
+    - target: {fileID: 3504061982757410606, guid: 9f93025e8cfadf549921b2e07773c997, type: 3}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504061982757410606, guid: 9f93025e8cfadf549921b2e07773c997, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 148173075
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504061982757410606, guid: 9f93025e8cfadf549921b2e07773c997, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4248195033041145003, guid: 9f93025e8cfadf549921b2e07773c997, type: 3}
       propertyPath: m_Name
       value: NPC_Quest_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4248195033041145003, guid: 9f93025e8cfadf549921b2e07773c997, type: 3}
+      propertyPath: m_TagString
+      value: NPC
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -66189,11 +66301,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 484623654}
+  - {fileID: 848361737}
   - {fileID: 1948763848}
   - {fileID: 1559872003}
   - {fileID: 914564731}
-  - {fileID: 484623654}
-  - {fileID: 848361737}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2085473873
