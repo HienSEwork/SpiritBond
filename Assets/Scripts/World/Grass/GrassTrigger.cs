@@ -27,5 +27,20 @@ namespace SpiritBond.World.Grass
             Debug.Log($"[GrassTrigger] Player entered grass trigger: {gameObject.name}");
             grassSpawner?.TrySpawnEncounter();
         }
+
+        private void OnTriggerStay2D(Collider2D other)
+        {
+            // Keep empty to avoid repeated encounter/log spam while player stands inside grass.
+        }
+
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            if (!other.CompareTag("Player"))
+            {
+                return;
+            }
+
+            grassSpawner?.HandlePlayerExitGrass();
+        }
     }
 }

@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c7e0eafe89f000479738918df37d959, type: 3}
+  m_Name: Magma Turtle
+  m_EditorClassIdentifier: 
+  petName: Magma Turtle
+  description: 
+  avatar: {fileID: 1688578767, guid: 3e9d887016c57e74a91ee557e6a6e91a, type: 3}
+  frontSprite: {fileID: 1688578767, guid: 3e9d887016c57e74a91ee557e6a6e91a, type: 3}
+  backSprite: {fileID: 0}
+  battleSprite: {fileID: 222201018, guid: 3e9d887016c57e74a91ee557e6a6e91a, type: 3}
+  primaryType: 3
+  maxLevelForEvolution: 10
+  maxHP: 65
+  attack: 10
+  defense: 5
+  skillPool:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  learnableSkills: []

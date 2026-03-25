@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1912b07e34c52904aa8feaea8a64d1c4, type: 3}
+  m_Name: EncounterConfig
+  m_EditorClassIdentifier: 
+  spawnRate: 0.2
+  petList:
+  - {fileID: 11400000, guid: 9a8d794ea791b384da7146fc8337e8bc, type: 2}

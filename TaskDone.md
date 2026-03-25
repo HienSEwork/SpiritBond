@@ -133,3 +133,120 @@
   - Assets/Scripts/Battle/BattleCalculator.cs
   - Assets/Scripts/Battle/BattleManager.cs
   - Assets/Scripts/World/Encounter/EncounterManager.cs
+
+## Entry 15
+- Done: 20:59 25/03/2026
+- Task: Fix Legacy Spirit Battle Compile Errors And Add Missing MoveBase
+- Files:
+  - Assets/Scripts/Battle/Move.cs
+  - Assets/Scripts/Battle/MoveBase.cs
+  - Assets/Scripts/Battle/MoveBase.cs.meta
+  - Assets/Scripts/Spirit/SpiritBase.cs
+  - Assets/Scripts/Spirit/Spirit.cs
+  - Assembly-CSharp.csproj
+
+## Entry 16
+- Done: 21:06 25/03/2026
+- Task: UPDATE TASK: Runtime Pet Storage, Autosave, Battle Checkpoint And Firefox Sample Logic - gộp logic battle mới vào bộ file UI battle cũ và bỏ file battle trùng
+- Files:
+  - Assets/Scripts/Battle/BattleSystem.cs
+  - Assets/Scripts/Battle/BattleHud.cs
+  - Assets/Scripts/Battle/BattleDialogBox.cs
+  - Assets/Scripts/Battle/BattleUnit1.cs
+  - Assets/Scripts/Battle/BattleManager.cs
+  - Assets/Scripts/Battle/BattleManager.cs.meta
+  - Assets/Scripts/Battle/BattleUnit.cs
+  - Assets/Scripts/Battle/BattleUnit.cs.meta
+
+## Entry 17
+- Done: 21:10 25/03/2026
+- Task: UPDATE TASK: Runtime Pet Storage, Autosave, Battle Checkpoint And Firefox Sample Logic - gom logic Spirit/Move vào Pet/Skill và xóa file code legacy thừa
+- Files:
+  - Assets/Scripts/Pet/PetData.cs
+  - Assets/Scripts/Pet/PetInstance.cs
+  - Assets/Scripts/Skill/SkillData.cs
+  - Assets/Scripts/Skill/SkillInstance.cs
+  - Assets/Scripts/Battle/Move.cs
+  - Assets/Scripts/Battle/Move.cs.meta
+  - Assets/Scripts/Battle/MoveBase.cs
+  - Assets/Scripts/Battle/MoveBase.cs.meta
+  - Assets/Scripts/Spirit/Spirit.cs
+  - Assets/Scripts/Spirit/Spirit.cs.meta
+  - Assets/Scripts/Spirit/SpiritBase.cs
+  - Assets/Scripts/Spirit/SpiritBase.cs.meta
+  - Assets/Scripts/Spirit.meta
+  - Assembly-CSharp.csproj
+
+## Entry 18
+- Done: 21:18 25/03/2026
+- Task: Grass Roaming Pet Encounter Spawn And Touch Trigger Battle
+- Files:
+  - Assets/Scripts/World/Grass/GrassSpawner.cs
+  - Assets/Scripts/World/Grass/GrassTrigger.cs
+  - Assets/Scripts/World/Grass/GrassEncounterPet.cs
+  - Assets/Scripts/World/Grass/GrassEncounterPet.cs.meta
+  - Assembly-CSharp.csproj
+
+## Entry 19
+- Done: 22:05 25/03/2026
+- Task: NPC Quest Battle Trigger With PetData And Enemy Level Scaling
+- Files:
+  - Assets/Scripts/NPC/NPCBattleTrigger.cs
+  - Assets/Scripts/NPC/NPCBattleTrigger.cs.meta
+  - Assets/Scripts/NPC/NPCQuestBattleData.cs
+  - Assets/Scripts/NPC/NPCQuestBattleData.cs.meta
+  - Assets/Scripts/World/Encounter/EncounterManager.cs
+  - Assets/Scripts/Pet/PetInstance.cs
+  - Assets/Scripts/Battle/BattleSystem.cs
+  - Assembly-CSharp.csproj
+
+## Entry 20
+- Done: 22:08 25/03/2026
+- Task: Separate Player Scripts Into Dedicated Folder
+- Files:
+  - Assets/Scripts/Player/PlayerController.cs
+  - Assets/Scripts/Player/PlayerController.cs.meta
+  - Assets/Scripts/Player/PlayerInput.cs
+  - Assets/Scripts/Player/PlayerInput.cs.meta
+  - Assets/Scripts/NPC/PlayerController.cs
+  - Assets/Scripts/NPC/PlayerController.cs.meta
+  - Assets/Scripts/NPC/PlayerInput.cs
+  - Assets/Scripts/NPC/PlayerInput.cs.meta
+  - Assembly-CSharp.csproj
+
+## Entry 21
+- Done: 22:15 25/03/2026
+- Task: UPDATE TASK: NPC Quest Battle Trigger With PetData And Enemy Level Scaling - add debug logs for trigger detection and battle flow validation
+- Files:
+  - Assets/Scripts/NPC/NPCBattleTrigger.cs
+
+## Entry 22
+- Done: 22:16 25/03/2026
+- Task: Add Debug Logs For Main Buttons, Settings And Grass Encounter Touch Points
+- Files:
+  - Assets/Scripts/UI/Buttons/BtnBagUI.cs
+  - Assets/Scripts/UI/Buttons/BtnMapUI.cs
+  - Assets/Scripts/UI/Buttons/BtnSettingUI.cs
+  - Assets/Scripts/UI/Buttons/BtnShopUI.cs
+  - Assets/Scripts/MainMenu/AudioSetting.cs
+  - Assets/Scripts/MainMenu/BackButtonUI.cs
+  - Assets/Scripts/MainMenu/ExitButtonUI.cs
+  - Assets/Scripts/MainMenu/PlayButtonUI.cs
+  - Assets/Scripts/MainMenu/ResolutionSetting.cs
+  - Assets/Scripts/MainMenu/SettingsButtonUI.cs
+  - Assets/Scripts/World/Grass/GrassEncounterPet.cs
+
+## Entry 23
+- Done: 22:19 25/03/2026
+- Task: UPDATE TASK: Add Debug Logs For Main Buttons, Settings And Grass Encounter Touch Points - reduce repeated logs and stop Animator warning spam
+- Files:
+  - Assets/Scripts/NPC/NPCBattleTrigger.cs
+  - Assets/Scripts/World/Grass/GrassTrigger.cs
+  - Assets/Scripts/Player/PlayerController.cs
+  - Assets/Scripts/NPC/CharacterController.cs
+
+## Entry 24
+- Done: 22:21 25/03/2026
+- Task: UPDATE TASK: Add Debug Logs For Main Buttons, Settings And Grass Encounter Touch Points - fix duplicate AudioListener spam in Map Forest
+- Files:
+  - Assets/Scenes/Map Forest.unity

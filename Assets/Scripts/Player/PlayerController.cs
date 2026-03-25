@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     private Vector2 move;
     private Vector2 lastMove;
     private int currentAnimStateHash;
+    private bool animatorAvailable = true;
+    private bool missingAnimatorWarningLogged;
 
     private static readonly int MoveXHash = Animator.StringToHash("moveX");
     private static readonly int MoveYHash = Animator.StringToHash("moveY");
@@ -36,7 +38,11 @@ public class PlayerController : MonoBehaviour
 
         if (anim != null)
         {
-            anim.Play(currentAnimStateHash, 0, 0f);
+            animatorAvailable = anim.runtimeAnimatorController != null;
+            if (animatorAvailable)
+            {
+                anim.Play(currentAnimStateHash, 0, 0f);
+            }
         }
     }
 
@@ -79,6 +85,17 @@ public class PlayerController : MonoBehaviour
 
     private void HandleAnimation()
     {
+        if (!animatorAvailable)
+        {
+            if (!missingAnimatorWarningLogged)
+            {
+                Debug.LogWarning($"[PlayerController] Missing AnimatorController on {gameObject.name}. Animation updates skipped.");
+                missingAnimatorWarningLogged = true;
+            }
+
+            return;
+        }
+
         anim.SetFloat(MoveXHash, move.x);
         anim.SetFloat(MoveYHash, move.y);
         anim.SetFloat(LastXHash, lastMove.x);

@@ -23,6 +23,7 @@ public class ResolutionSetting : MonoBehaviour
 
         SetupDropdown();
         LoadResolution();
+        Debug.Log($"[ResolutionSetting] Initialized. Dropdown={(resolutionDropdown != null)}");
     }
 
     private void SetupDropdown()
@@ -55,6 +56,7 @@ public class ResolutionSetting : MonoBehaviour
         PlayerPrefs.SetInt(ResolutionKey, index);
         PlayerPrefs.Save();
 
+        Debug.Log($"[ResolutionSetting] ChangeResolution requested: index={index}");
         ApplyResolution(index);
     }
 

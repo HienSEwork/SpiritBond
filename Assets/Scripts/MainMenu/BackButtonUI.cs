@@ -7,6 +7,8 @@ public class BackButtonUI : MonoBehaviour
 
     public void CloseSettings()
     {
+        Debug.Log("[BackButtonUI] CloseSettings clicked.");
+
         if (settingsPanel != null)
             settingsPanel.SetActive(false);
 

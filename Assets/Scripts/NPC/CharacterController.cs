@@ -17,6 +17,8 @@ namespace SpiritBond.NPC
 
         private Vector2 move;
         private Vector2 lastMove = Vector2.down;
+        private bool animatorAvailable = true;
+        private bool missingAnimatorWarningLogged;
 
         private static readonly int MoveXHash = Animator.StringToHash("moveX");
         private static readonly int MoveYHash = Animator.StringToHash("moveY");
@@ -27,6 +29,7 @@ namespace SpiritBond.NPC
         {
             rb = GetComponent<Rigidbody2D>();
             anim = GetComponent<Animator>();
+            animatorAvailable = anim != null && anim.runtimeAnimatorController != null;
 
             movementInput = ResolveMovementInput();
             if (movementInput == null)
@@ -71,6 +74,17 @@ namespace SpiritBond.NPC
 
         private void UpdateAnimator()
         {
+            if (!animatorAvailable)
+            {
+                if (!missingAnimatorWarningLogged)
+                {
+                    Debug.LogWarning($"[CharacterController] Missing AnimatorController on {gameObject.name}. Animation updates skipped.");
+                    missingAnimatorWarningLogged = true;
+                }
+
+                return;
+            }
+
             anim.SetFloat(MoveXHash, move.x);
             anim.SetFloat(MoveYHash, move.y);
             anim.SetFloat(LastXHash, lastMove.x);

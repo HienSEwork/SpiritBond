@@ -10,5 +10,6 @@ namespace SpiritBond.Skill
         public string description;
         public PetType skillType = PetType.Normal;
         public int power;
+        public int pp = 20;
     }
 }

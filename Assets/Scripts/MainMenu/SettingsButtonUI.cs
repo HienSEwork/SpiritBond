@@ -7,6 +7,8 @@ public class SettingsButtonUI : MonoBehaviour
 
     public void OpenSettings()
     {
+        Debug.Log("[SettingsButtonUI] OpenSettings clicked.");
+
         if (mainPanel != null)
             mainPanel.SetActive(false);
 

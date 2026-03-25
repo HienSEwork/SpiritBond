@@ -24,6 +24,16 @@ namespace SpiritBond.Pet
             skills = BuildSkillLoadout(data);
         }
 
+        public PetInstance(PetData data, int startingLevel)
+        {
+            petData = data;
+            instanceId = System.Guid.NewGuid().ToString("N");
+            level = Mathf.Max(PetProgression.MinLevel, startingLevel);
+            currentExp = 0;
+            currentHP = data != null ? data.maxHP : 0;
+            skills = BuildSkillLoadout(data);
+        }
+
         public PetInstance(PetData data, SkillInstance[] predefinedSkills)
         {
             petData = data;
@@ -153,20 +163,12 @@ namespace SpiritBond.Pet
         private SkillInstance[] BuildSkillLoadout(PetData data)
         {
             SkillInstance[] loadout = new SkillInstance[4];
-            if (data == null || data.skillPool == null || data.skillPool.Length == 0)
+            if (data == null)
             {
                 return loadout;
             }
 
-            List<SkillData> availableSkills = new List<SkillData>();
-            for (int i = 0; i < data.skillPool.Length; i++)
-            {
-                if (data.skillPool[i] != null)
-                {
-                    availableSkills.Add(data.skillPool[i]);
-                }
-            }
-
+            List<SkillData> availableSkills = BuildAvailableSkills(data);
             if (availableSkills.Count == 0)
             {
                 return loadout;
@@ -174,11 +176,54 @@ namespace SpiritBond.Pet
 
             for (int i = 0; i < loadout.Length; i++)
             {
-                SkillData selectedSkill = availableSkills[Random.Range(0, availableSkills.Count)];
-                loadout[i] = new SkillInstance(selectedSkill);
+                if (i < availableSkills.Count)
+                {
+                    loadout[i] = new SkillInstance(availableSkills[i]);
+                }
             }
 
             return loadout;
+        }
+
+        private List<SkillData> BuildAvailableSkills(PetData data)
+        {
+            List<SkillData> availableSkills = new List<SkillData>();
+
+            if (data.learnableSkills != null && data.learnableSkills.Length > 0)
+            {
+                for (int i = 0; i < data.learnableSkills.Length; i++)
+                {
+                    PetData.LearnableSkill learnableSkill = data.learnableSkills[i];
+                    if (learnableSkill != null && learnableSkill.skillData != null && learnableSkill.level <= level)
+                    {
+                        availableSkills.Add(learnableSkill.skillData);
+                        if (availableSkills.Count >= 4)
+                        {
+                            return availableSkills;
+                        }
+                    }
+                }
+            }
+
+            if (data.skillPool != null)
+            {
+                for (int i = 0; i < data.skillPool.Length; i++)
+                {
+                    SkillData skillData = data.skillPool[i];
+                    if (skillData == null || availableSkills.Contains(skillData))
+                    {
+                        continue;
+                    }
+
+                    availableSkills.Add(skillData);
+                    if (availableSkills.Count >= 4)
+                    {
+                        return availableSkills;
+                    }
+                }
+            }
+
+            return availableSkills;
         }
 
         private SkillInstance[] CloneLoadout(SkillInstance[] source)
@@ -193,7 +238,7 @@ namespace SpiritBond.Pet
             {
                 if (source[i] != null && source[i].skillData != null)
                 {
-                    clone[i] = new SkillInstance(source[i].skillData);
+                    clone[i] = new SkillInstance(source[i].skillData, source[i].currentPP);
                 }
             }
 
@@ -216,12 +261,14 @@ namespace SpiritBond.Pet
     public class PetDataSaveData
     {
         public string petName;
+        public string description;
         public PetType primaryType;
         public int maxLevelForEvolution;
         public int maxHP;
         public int attack;
         public int defense;
         public SkillDataSaveData[] skillPool;
+        public LearnableSkillSaveData[] learnableSkills;
 
         public static PetDataSaveData FromPetData(PetData petData)
         {
@@ -233,12 +280,14 @@ namespace SpiritBond.Pet
             return new PetDataSaveData
             {
                 petName = petData.petName,
+                description = petData.description,
                 primaryType = petData.primaryType,
                 maxLevelForEvolution = petData.maxLevelForEvolution,
                 maxHP = petData.maxHP,
                 attack = petData.attack,
                 defense = petData.defense,
-                skillPool = SkillDataSaveData.FromSkillDataArray(petData.skillPool)
+                skillPool = SkillDataSaveData.FromSkillDataArray(petData.skillPool),
+                learnableSkills = LearnableSkillSaveData.FromLearnableSkillArray(petData.learnableSkills)
             };
         }
 
@@ -246,12 +295,14 @@ namespace SpiritBond.Pet
         {
             PetData data = ScriptableObject.CreateInstance<PetData>();
             data.petName = petName;
+            data.description = description;
             data.primaryType = primaryType;
             data.maxLevelForEvolution = maxLevelForEvolution;
             data.maxHP = maxHP;
             data.attack = attack;
             data.defense = defense;
             data.skillPool = SkillDataSaveData.ToSkillDataArray(skillPool);
+            data.learnableSkills = LearnableSkillSaveData.ToLearnableSkillArray(learnableSkills);
             return data;
         }
     }
@@ -263,6 +314,8 @@ namespace SpiritBond.Pet
         public string description;
         public int power;
         public PetType skillType;
+        public int pp;
+        public int currentPP;
 
         public static SkillDataSaveData FromSkillData(SkillData skillData)
         {
@@ -276,7 +329,9 @@ namespace SpiritBond.Pet
                 skillName = skillData.skillName,
                 description = skillData.description,
                 power = skillData.power,
-                skillType = skillData.skillType
+                skillType = skillData.skillType,
+                pp = skillData.pp,
+                currentPP = skillData.pp
             };
         }
 
@@ -287,6 +342,7 @@ namespace SpiritBond.Pet
             data.description = description;
             data.power = power;
             data.skillType = skillType;
+            data.pp = pp;
             return data;
         }
 
@@ -332,7 +388,11 @@ namespace SpiritBond.Pet
             SkillDataSaveData[] result = new SkillDataSaveData[skillInstances.Length];
             for (int i = 0; i < skillInstances.Length; i++)
             {
-                result[i] = skillInstances[i] != null ? FromSkillData(skillInstances[i].skillData) : null;
+                if (skillInstances[i] != null && skillInstances[i].skillData != null)
+                {
+                    result[i] = FromSkillData(skillInstances[i].skillData);
+                    result[i].currentPP = skillInstances[i].currentPP;
+                }
             }
 
             return result;
@@ -350,7 +410,61 @@ namespace SpiritBond.Pet
             {
                 if (saveDataArray[i] != null)
                 {
-                    result[i] = new SkillInstance(saveDataArray[i].ToSkillData());
+                    SkillData data = saveDataArray[i].ToSkillData();
+                    result[i] = new SkillInstance(data, saveDataArray[i].currentPP);
+                }
+            }
+
+            return result;
+        }
+    }
+
+    [System.Serializable]
+    public class LearnableSkillSaveData
+    {
+        public SkillDataSaveData skillData;
+        public int level;
+
+        public static LearnableSkillSaveData[] FromLearnableSkillArray(PetData.LearnableSkill[] learnableSkills)
+        {
+            if (learnableSkills == null)
+            {
+                return null;
+            }
+
+            LearnableSkillSaveData[] result = new LearnableSkillSaveData[learnableSkills.Length];
+            for (int i = 0; i < learnableSkills.Length; i++)
+            {
+                if (learnableSkills[i] != null)
+                {
+                    result[i] = new LearnableSkillSaveData
+                    {
+                        skillData = SkillDataSaveData.FromSkillData(learnableSkills[i].skillData),
+                        level = learnableSkills[i].level
+                    };
+                }
+            }
+
+            return result;
+        }
+
+        public static PetData.LearnableSkill[] ToLearnableSkillArray(LearnableSkillSaveData[] saveData)
+        {
+            if (saveData == null)
+            {
+                return null;
+            }
+
+            PetData.LearnableSkill[] result = new PetData.LearnableSkill[saveData.Length];
+            for (int i = 0; i < saveData.Length; i++)
+            {
+                if (saveData[i] != null)
+                {
+                    result[i] = new PetData.LearnableSkill
+                    {
+                        skillData = saveData[i].skillData != null ? saveData[i].skillData.ToSkillData() : null,
+                        level = saveData[i].level
+                    };
                 }
             }
 

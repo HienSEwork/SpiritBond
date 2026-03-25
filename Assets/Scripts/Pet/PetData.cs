@@ -7,7 +7,10 @@ namespace SpiritBond.Pet
     public class PetData : ScriptableObject
     {
         public string petName;
+        public string description;
         public Sprite avatar;
+        public Sprite frontSprite;
+        public Sprite backSprite;
         public Sprite battleSprite;
         public PetType primaryType = PetType.Normal;
         public int maxLevelForEvolution = PetProgression.MaxLevelForm1;
@@ -15,5 +18,13 @@ namespace SpiritBond.Pet
         public int attack;
         public int defense;
         public SkillData[] skillPool;
+        public LearnableSkill[] learnableSkills;
+
+        [System.Serializable]
+        public class LearnableSkill
+        {
+            public SkillData skillData;
+            public int level = PetProgression.MinLevel;
+        }
     }
 }

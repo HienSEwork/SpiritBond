@@ -4,6 +4,9 @@ namespace SpiritBond.UI.Buttons
 {
     public class BtnMapUI : MonoBehaviour
     {
-        // NOT USE
+        public void OnClick()
+        {
+            Debug.Log("[BtnMapUI] Btn_Map clicked. UI not use yet.");
+        }
     }
 }

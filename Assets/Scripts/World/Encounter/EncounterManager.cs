@@ -10,6 +10,7 @@ namespace SpiritBond.World.Encounter
         [SerializeField] private string battleSceneName = "Battle"; // Assign in Inspector
 
         public PetData PendingEnemyPetData { get; private set; }
+        public int PendingEnemyLevel { get; private set; } = PetProgression.MinLevel;
         public string PendingCheckpointSceneName { get; private set; }
         public Vector3 PendingCheckpointPlayerPosition { get; private set; }
         public bool HasPendingCheckpoint { get; private set; }
@@ -18,6 +19,11 @@ namespace SpiritBond.World.Encounter
 
         public void StartEncounter(PetData enemyPetData)
         {
+            StartEncounter(enemyPetData, PetProgression.MinLevel);
+        }
+
+        public void StartEncounter(PetData enemyPetData, int enemyLevel)
+        {
             if (enemyPetData == null)
             {
                 Debug.LogWarning("[EncounterManager] StartEncounter failed because enemyPetData is null.");
@@ -25,6 +31,7 @@ namespace SpiritBond.World.Encounter
             }
 
             PendingEnemyPetData = enemyPetData;
+            PendingEnemyLevel = Mathf.Max(PetProgression.MinLevel, enemyLevel);
 
             if (SaveGameService.TryGetCurrentWorldState(out string sceneName, out Vector3 playerPosition))
             {
@@ -40,7 +47,7 @@ namespace SpiritBond.World.Encounter
                 PendingCheckpointPlayerPosition = Vector3.zero;
             }
 
-            Debug.Log($"[EncounterManager] Starting encounter with {enemyPetData.petName}. Loading scene: {battleSceneName}");
+            Debug.Log($"[EncounterManager] Starting encounter with {enemyPetData.petName} at level {PendingEnemyLevel}. Loading scene: {battleSceneName}");
             SceneManager.LoadScene(battleSceneName);
         }
 
@@ -51,10 +58,18 @@ namespace SpiritBond.World.Encounter
             return pendingPetData;
         }
 
+        public int ConsumePendingEnemyLevel()
+        {
+            int pendingLevel = PendingEnemyLevel;
+            PendingEnemyLevel = PetProgression.MinLevel;
+            return Mathf.Max(PetProgression.MinLevel, pendingLevel);
+        }
+
         public void ClearPendingEncounter()
         {
             Debug.Log("[EncounterManager] Clearing pending encounter data.");
             PendingEnemyPetData = null;
+            PendingEnemyLevel = PetProgression.MinLevel;
             PendingCheckpointSceneName = string.Empty;
             PendingCheckpointPlayerPosition = Vector3.zero;
             HasPendingCheckpoint = false;

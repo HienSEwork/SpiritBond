@@ -661,6 +661,7 @@ Transform:
   m_Children:
   - {fileID: 2085473874}
   - {fileID: 177273597}
+  - {fileID: 2106271731}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &252206594
@@ -4216,7 +4217,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 634588827}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &634588830
 Camera:
   m_ObjectHideFlags: 0
@@ -4906,7 +4907,7 @@ TilemapRenderer:
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
-  m_Mode: 0
+  m_Mode: 1
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
 --- !u!1839735485 &909592505
@@ -66969,6 +66970,118 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1150222716}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2106271730
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2106271731}
+  - component: {fileID: 2106271734}
+  - component: {fileID: 2106271733}
+  - component: {fileID: 2106271732}
+  m_Layer: 0
+  m_Name: GrassEncounterZone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2106271731
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2106271730}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 235627228}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2106271732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2106271730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b84b333964744242ba4ef65622b8a9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grassSpawner: {fileID: 2106271733}
+--- !u!114 &2106271733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2106271730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14ebff7a55f8ca8499c9cca6acfd85d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  encounterConfig: {fileID: 11400000, guid: 5bb30178122601644bfa9c6431d9fbe0, type: 2}
+  spawnRate: 0.2
+  roamingPetPrefab: {fileID: 0}
+  respawnCooldown: 2
+  roamingMoveSpeed: 1.2
+  roamingIdleDuration: 0.5
+  roamingArrivalDistance: 0.08
+  despawnPetWhenPlayerLeaves: 1
+--- !u!61 &2106271734
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2106271730}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &2107973910
 GameObject:
   m_ObjectHideFlags: 0
@@ -76694,11 +76807,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5558749918139511626, guid: 3f671cbeba321cc4aa5cc0bd53788d9c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 25.295
+      value: 24.95
       objectReference: {fileID: 0}
     - target: {fileID: 5558749918139511626, guid: 3f671cbeba321cc4aa5cc0bd53788d9c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -16.9
+      value: -17.1
       objectReference: {fileID: 0}
     - target: {fileID: 5558749918139511626, guid: 3f671cbeba321cc4aa5cc0bd53788d9c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -76734,19 +76847,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8334220498510115014, guid: 3f671cbeba321cc4aa5cc0bd53788d9c, type: 3}
       propertyPath: m_Size.x
-      value: 0.8666439
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 8334220498510115014, guid: 3f671cbeba321cc4aa5cc0bd53788d9c, type: 3}
       propertyPath: m_Size.y
-      value: 1.6157484
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 8334220498510115014, guid: 3f671cbeba321cc4aa5cc0bd53788d9c, type: 3}
       propertyPath: m_Offset.x
-      value: 0.020246506
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8334220498510115014, guid: 3f671cbeba321cc4aa5cc0bd53788d9c, type: 3}
       propertyPath: m_Offset.y
-      value: 0
+      value: 0.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

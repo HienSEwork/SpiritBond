@@ -13,6 +13,7 @@ public class AudioSetting : MonoBehaviour
             audioToggle = GetComponent<Toggle>();
 
         LoadAudio();
+        Debug.Log($"[AudioSetting] Initialized. Toggle={(audioToggle != null)}");
     }
 
     private void LoadAudio()
@@ -21,6 +22,7 @@ public class AudioSetting : MonoBehaviour
 
         audioToggle.isOn = isAudioOn;
         AudioListener.volume = isAudioOn ? 1f : 0f;
+        Debug.Log($"[AudioSetting] Loaded audio setting: {isAudioOn}");
     }
 
     public void ChangeAudio(bool isAudioOn)
@@ -29,5 +31,6 @@ public class AudioSetting : MonoBehaviour
 
         PlayerPrefs.SetInt(AudioKey, isAudioOn ? 1 : 0);
         PlayerPrefs.Save();
+        Debug.Log($"[AudioSetting] Audio changed: {isAudioOn}");
     }
 }

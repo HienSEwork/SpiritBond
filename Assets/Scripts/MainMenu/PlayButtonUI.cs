@@ -8,6 +8,7 @@ public class PlayButtonUI : MonoBehaviour
 
     public void PlayGame()
     {
+        Debug.Log($"[PlayButtonUI] PlayGame clicked. Target={targetSceneName} LoadingScene={loadingSceneName}");
         SceneLoaderData.nextSceneName = targetSceneName;
         SceneManager.LoadScene(loadingSceneName);
     }
