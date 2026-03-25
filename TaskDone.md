@@ -118,3 +118,18 @@
 - Files:
   - Assembly-CSharp.csproj
 
+
+## Entry 14
+- Done: 15:02 25/03/2026
+- Task: Runtime Pet Storage, Autosave, Battle Checkpoint And Firefox Sample Logic
+- Files:
+  - Assets/Scripts/Core/SaveGameService.cs
+  - Assets/Scripts/Core/SaveGameService.cs.meta
+  - Assets/Scripts/Pet/PlayerProgressState.cs
+  - Assets/Scripts/Pet/PlayerProgressState.cs.meta
+  - Assets/Scripts/Pet/SamplePetContent.cs
+  - Assets/Scripts/Pet/SamplePetContent.cs.meta
+  - Assets/Scripts/Pet/PetInstance.cs
+  - Assets/Scripts/Battle/BattleCalculator.cs
+  - Assets/Scripts/Battle/BattleManager.cs
+  - Assets/Scripts/World/Encounter/EncounterManager.cs

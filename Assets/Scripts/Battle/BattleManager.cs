@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using SpiritBond.Core;
 using SpiritBond.Pet;
 using SpiritBond.Skill;
 using SpiritBond.World.Encounter;
@@ -10,7 +11,6 @@ namespace SpiritBond.Battle
     {
         [SerializeField] private BattleUnit playerUnit; // Assign in Inspector
         [SerializeField] private BattleUnit enemyUnit; // Assign in Inspector
-        [SerializeField] private PetData playerPetData; // Assign in Inspector
 
         private bool battleEnded;
 
@@ -22,23 +22,42 @@ namespace SpiritBond.Battle
 
         private void SetupBattle()
         {
-            if (playerUnit == null || enemyUnit == null || playerPetData == null || EncounterManager.Instance == null)
+            PlayerProgressState progressState = SaveGameService.LoadOrCreate();
+            if (playerUnit == null || enemyUnit == null || EncounterManager.Instance == null || progressState == null)
             {
                 Debug.LogWarning("[BattleManager] SetupBattle failed because references are missing.");
                 return;
             }
 
-            PetData enemyPetData = EncounterManager.Instance.PendingEnemyPetData;
-            if (enemyPetData == null)
+            PetInstance playerPetInstance = progressState.GetPrimaryBattlePet();
+            if (playerPetInstance == null)
             {
-                Debug.LogWarning("[BattleManager] SetupBattle failed because pending enemy pet is null.");
+                Debug.LogWarning("[BattleManager] SetupBattle failed because primary team pet is missing.");
+                battleEnded = true;
+                if (EncounterManager.Instance != null)
+                {
+                    EncounterManager.Instance.ClearPendingEncounter();
+                }
+                SaveGameService.ReturnToLatestCheckpoint();
                 return;
             }
 
-            Debug.Log($"[BattleManager] Setup battle Player={playerPetData.petName} Enemy={enemyPetData.petName}");
-            playerUnit.Setup(new PetInstance(playerPetData));
+            PetData enemyPetData = EncounterManager.Instance.ConsumePendingEnemyPetData();
+            if (enemyPetData == null)
+            {
+                Debug.LogWarning("[BattleManager] SetupBattle failed because pending enemy pet is null.");
+                battleEnded = true;
+                if (EncounterManager.Instance != null)
+                {
+                    EncounterManager.Instance.ClearPendingEncounter();
+                }
+                SaveGameService.ReturnToLatestCheckpoint();
+                return;
+            }
+
+            Debug.Log($"[BattleManager] Setup battle Player={playerPetInstance.petData.petName} Enemy={enemyPetData.petName}");
+            playerUnit.Setup(playerPetInstance);
             enemyUnit.Setup(new PetInstance(enemyPetData));
-            EncounterManager.Instance.ClearPendingEncounter();
         }
 
         public void PlayerUseSkill(int index)
@@ -46,6 +65,13 @@ namespace SpiritBond.Battle
             if (battleEnded || playerUnit == null || enemyUnit == null || playerUnit.PetInstance == null || enemyUnit.PetInstance == null)
             {
                 Debug.LogWarning("[BattleManager] PlayerUseSkill blocked because battle state is invalid.");
+                return;
+            }
+
+            if (!playerUnit.PetInstance.CanBattle)
+            {
+                Debug.LogWarning("[BattleManager] PlayerUseSkill blocked because active pet cannot battle.");
+                EndBattle(false);
                 return;
             }
 
@@ -62,8 +88,7 @@ namespace SpiritBond.Battle
 
             if (enemyUnit.PetInstance.IsFainted)
             {
-                battleEnded = true;
-                Debug.Log("[BattleManager] Enemy fainted. Battle ended.");
+                EndBattle(true);
                 return;
             }
 
@@ -91,9 +116,46 @@ namespace SpiritBond.Battle
 
             if (playerUnit.PetInstance.IsFainted)
             {
-                battleEnded = true;
-                Debug.Log("[BattleManager] Player fainted. Battle ended.");
+                EndBattle(false);
             }
+        }
+
+        private void EndBattle(bool playerWon)
+        {
+            if (battleEnded)
+            {
+                return;
+            }
+
+            battleEnded = true;
+
+            PlayerProgressState progressState = SaveGameService.LoadOrCreate();
+            if (progressState == null)
+            {
+                Debug.LogWarning("[BattleManager] EndBattle aborted because progress state is missing.");
+                return;
+            }
+
+            if (playerWon && playerUnit != null && enemyUnit != null && playerUnit.PetInstance != null)
+            {
+                int expReward = BattleCalculator.CalculateExpReward(enemyUnit != null ? enemyUnit.PetInstance : null);
+                bool leveledUp = playerUnit.PetInstance.AddExp(expReward);
+                Debug.Log($"[BattleManager] Player won and gained {expReward} EXP. LeveledUp={leveledUp}");
+            }
+            else
+            {
+                Debug.Log("[BattleManager] Player lost the battle.");
+            }
+
+            progressState.RestoreBattleTeamToFullHealth();
+            SaveGameService.Save();
+
+            if (EncounterManager.Instance != null)
+            {
+                EncounterManager.Instance.ClearPendingEncounter();
+            }
+
+            SaveGameService.ReturnToLatestCheckpoint();
         }
 
         private SkillInstance GetSkillAt(SkillInstance[] skillSet, int index)
