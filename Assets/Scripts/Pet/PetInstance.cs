@@ -8,17 +8,71 @@ namespace SpiritBond.Pet
     public class PetInstance
     {
         public PetData petData;
+        public int level;
+        public int currentExp;
         public int currentHP;
         public SkillInstance[] skills;
 
         public PetInstance(PetData data)
         {
             petData = data;
+            level = PetProgression.MinLevel;
+            currentExp = 0;
             currentHP = data != null ? data.maxHP : 0;
             skills = BuildSkillLoadout(data);
         }
 
         public bool IsFainted => currentHP <= 0;
+
+        public int MaxLevelForEvolution
+        {
+            get
+            {
+                if (petData == null)
+                {
+                    return PetProgression.MaxLevelForm1;
+                }
+
+                return Mathf.Max(PetProgression.MinLevel, petData.maxLevelForEvolution);
+            }
+        }
+
+        public int GetExpRequiredForNextLevel()
+        {
+            return PetProgression.BaseExpToLevelUp + ((level - PetProgression.MinLevel) * PetProgression.ExpStepPerLevel);
+        }
+
+        public bool AddExp(int amount)
+        {
+            if (amount <= 0 || level >= MaxLevelForEvolution)
+            {
+                return false;
+            }
+
+            bool leveledUp = false;
+            currentExp += amount;
+
+            while (level < MaxLevelForEvolution)
+            {
+                int requiredExp = GetExpRequiredForNextLevel();
+                if (currentExp < requiredExp)
+                {
+                    break;
+                }
+
+                currentExp -= requiredExp;
+                level++;
+                leveledUp = true;
+            }
+
+            if (level >= MaxLevelForEvolution)
+            {
+                level = MaxLevelForEvolution;
+                currentExp = 0;
+            }
+
+            return leveledUp;
+        }
 
         private SkillInstance[] BuildSkillLoadout(PetData data)
         {

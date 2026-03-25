@@ -1,3 +1,4 @@
+using SpiritBond.Pet;
 using UnityEngine;
 
 namespace SpiritBond.Skill
@@ -7,6 +8,7 @@ namespace SpiritBond.Skill
     {
         public string skillName;
         public string description;
+        public PetType skillType = PetType.Normal;
         public int power;
     }
 }
