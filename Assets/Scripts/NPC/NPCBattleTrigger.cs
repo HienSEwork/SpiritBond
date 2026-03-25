@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using SpiritBond.Core;
 using SpiritBond.World.Encounter;
 using UnityEngine;
 
@@ -32,6 +33,7 @@ namespace SpiritBond.NPC
         private bool triggerLocked;
         private bool triggeredOnceThisScene;
         private bool inputHintShown;
+        private bool startupBlockLogged;
 
         private void Awake()
         {
@@ -72,7 +74,19 @@ namespace SpiritBond.NPC
 
             playerInside = true;
             inputHintShown = false;
+            startupBlockLogged = false;
             Debug.Log($"[NPCBattleTrigger] Player entered trigger for {GetNpcName()}.");
+
+            if (GameplayTriggerGuard.IsBlocked)
+            {
+                if (enableDebugLogs && !startupBlockLogged)
+                {
+                    Debug.Log($"[NPCBattleTrigger] Trigger blocked for {GetNpcName()} during startup lock. Remaining={GameplayTriggerGuard.RemainingBlockTime:F1}s");
+                    startupBlockLogged = true;
+                }
+
+                return;
+            }
 
             if (!requireInputKey)
             {
@@ -89,8 +103,19 @@ namespace SpiritBond.NPC
 
         private void OnTriggerStay2D(Collider2D other)
         {
-            if (!playerInside || !requireInputKey || !other.CompareTag("Player"))
+            if (!playerInside || !other.CompareTag("Player"))
             {
+                return;
+            }
+
+            if (GameplayTriggerGuard.IsBlocked)
+            {
+                return;
+            }
+
+            if (!requireInputKey)
+            {
+                TryStartBattleFlow();
                 return;
             }
 
@@ -111,6 +136,7 @@ namespace SpiritBond.NPC
             playerInside = false;
             triggerLocked = false;
             inputHintShown = false;
+            startupBlockLogged = false;
             Debug.Log($"[NPCBattleTrigger] Player exited trigger for {GetNpcName()}.");
         }
 

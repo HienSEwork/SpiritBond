@@ -1,3 +1,4 @@
+using SpiritBond.Core;
 using SpiritBond.Pet;
 using UnityEngine;
 
@@ -86,13 +87,25 @@ namespace SpiritBond.World.Grass
         {
             Debug.Log($"[GrassEncounterPet] OnTriggerEnter2D by {other.name} | Tag={other.tag}");
 
-            if (encounterStarted || !other.CompareTag("Player"))
+            if (encounterStarted || !other.CompareTag("Player") || GameplayTriggerGuard.IsBlocked)
             {
                 return;
             }
 
             encounterStarted = true;
             Debug.Log($"[GrassEncounterPet] Player touched roaming pet {GetPetName()}.");
+            owner?.StartEncounterFromRoamingPet(this);
+        }
+
+        private void OnTriggerStay2D(Collider2D other)
+        {
+            if (encounterStarted || !other.CompareTag("Player") || GameplayTriggerGuard.IsBlocked)
+            {
+                return;
+            }
+
+            encounterStarted = true;
+            Debug.Log($"[GrassEncounterPet] Player touched roaming pet {GetPetName()} after startup lock expired.");
             owner?.StartEncounterFromRoamingPet(this);
         }
 

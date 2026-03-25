@@ -243,7 +243,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 473040964691245844, guid: 3f671cbeba321cc4aa5cc0bd53788d9c, type: 3}
   m_PrefabInstance: {fileID: 6253793446631057511}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 769272331}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a718c4531d2ad854a8bf88495cbb1703, type: 3}
@@ -4344,6 +4344,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 698806931}
   m_CullTransparentMesh: 1
+--- !u!1 &769272331 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 843401803766959854, guid: 3f671cbeba321cc4aa5cc0bd53788d9c, type: 3}
+  m_PrefabInstance: {fileID: 6253793446631057511}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &769272336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 769272331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43cd5f6c770fcf048aa23b72d97a2351, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  smoothSpeed: 5
+  offset: {x: 0, y: 0, z: 0}
 --- !u!1 &818545918
 GameObject:
   m_ObjectHideFlags: 0
@@ -4701,7 +4721,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4248195033041145003, guid: 9f93025e8cfadf549921b2e07773c997, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1963822816}
+    - targetCorrespondingSourceObject: {fileID: 4248195033041145003, guid: 9f93025e8cfadf549921b2e07773c997, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1963822815}
   m_SourcePrefab: {fileID: 100100000, guid: 9f93025e8cfadf549921b2e07773c997, type: 3}
 --- !u!4 &848361737 stripped
 Transform:
@@ -48796,6 +48822,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1150222716}
+  - component: {fileID: 1150222717}
   m_Layer: 0
   m_Name: System
   m_TagString: Untagged
@@ -48824,6 +48851,19 @@ Transform:
   - {fileID: 2099181318}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1150222717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1150222715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb913556c647fa64b8876537e82a0f7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  battleSceneName: Battle
 --- !u!1001 &1254536136
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -66655,6 +66695,48 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1951284615}
   m_CullTransparentMesh: 1
+--- !u!1 &1963822807 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4248195033041145003, guid: 9f93025e8cfadf549921b2e07773c997, type: 3}
+  m_PrefabInstance: {fileID: 848361736}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1963822815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1963822807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f1a02dcd4894378b42a84f56775631b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questBattleData: {fileID: 0}
+  triggerMode: 1
+  requireInputKey: 0
+  inputKey: 101
+  battleDelayAfterLog: 0.25
+  enableDebugLogs: 1
+--- !u!114 &1963822816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1963822807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f3f89d54a104f9db234853ce82ecff3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcDisplayName: NPC
+  questId: quest_01
+  enemyPetData: {fileID: 11400000, guid: 9a8d794ea791b384da7146fc8337e8bc, type: 2}
+  baseEnemyLevel: 1
+  npcOrderIndex: 1
+  oneTimeOnly: 0
+  interactionLogText: NPC challenge started.
 --- !u!1 &1965356125
 GameObject:
   m_ObjectHideFlags: 0
@@ -76864,7 +76946,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 843401803766959854, guid: 3f671cbeba321cc4aa5cc0bd53788d9c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 769272336}
   m_SourcePrefab: {fileID: 100100000, guid: 3f671cbeba321cc4aa5cc0bd53788d9c, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

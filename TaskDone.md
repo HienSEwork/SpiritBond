@@ -250,3 +250,81 @@
 - Task: UPDATE TASK: Add Debug Logs For Main Buttons, Settings And Grass Encounter Touch Points - fix duplicate AudioListener spam in Map Forest
 - Files:
   - Assets/Scenes/Map Forest.unity
+
+## Entry 25
+- Done: 22:36 25/03/2026
+- Task: Fix AudioListener Spam Across Scene Loads And Auto Bootstrap Empty Battle Scene
+- Files:
+  - Assets/Scripts/Core/AudioListenerGuard.cs
+  - Assets/Scripts/Core/AudioListenerGuard.cs.meta
+  - Assets/Scripts/Battle/BattleSceneAutoSetup.cs
+  - Assets/Scripts/Battle/BattleSceneAutoSetup.cs.meta
+  - Assembly-CSharp.csproj
+
+## Entry 26
+- Done: 22:40 25/03/2026
+- Task: Prevent Auto Trigger On Load By Adding 5 Second Gameplay Trigger Lock
+- Files:
+  - Assets/Scripts/Core/GameplayTriggerGuard.cs
+  - Assets/Scripts/Core/GameplayTriggerGuard.cs.meta
+  - Assets/Scripts/NPC/NPCBattleTrigger.cs
+  - Assets/Scripts/World/Grass/GrassTrigger.cs
+  - Assets/Scripts/World/Grass/GrassEncounterPet.cs
+  - Assembly-CSharp.csproj
+
+## Entry 27
+- Done: 22:42 25/03/2026
+- Task: UPDATE TASK: Fix AudioListener Spam Across Scene Loads And Auto Bootstrap Empty Battle Scene - fix runtime font, reference binding and duplicate listener guard logs
+- Files:
+  - Assets/Scripts/Core/AudioListenerGuard.cs
+  - Assets/Scripts/Battle/BattleSceneAutoSetup.cs
+
+## Entry 28
+- Done: 22:55 25/03/2026
+- Task: Bag And Inventory MVP Integration From AN Source With Existing UI Structure
+- Files:
+  - Assets/Scripts/Inventory/ItemData.cs
+  - Assets/Scripts/Inventory/InventoryItemStack.cs
+  - Assets/Scripts/Inventory/InventoryManager.cs
+  - Assets/Scripts/Inventory/BagSceneBinder.cs
+  - Assets/Scripts/UI/Buttons/BtnBagUI.cs
+  - Assets/Scripts/UI/Buttons/ItemSlotUI.cs
+  - Assets/Scripts/UI/Panels/PanelBagUI.cs
+  - Assembly-CSharp.csproj
+
+## Entry 29
+- Done: 22:58 25/03/2026
+- Task: Remove Unused TextMesh Pro Documentation And Example Assets
+- Files:
+  - Assets/TextMesh Pro/Documentation
+  - Assets/TextMesh Pro/Examples & Extras
+  - Assembly-CSharp.csproj
+
+## Entry 30
+- Done: 23:04 25/03/2026
+- Task: UPDATE TASK: Runtime Pet Storage, Autosave, Battle Checkpoint And Firefox Sample Logic - avoid editor direct play restoring player to autosave position
+- Files:
+  - Assets/Scripts/Core/SaveGameService.cs
+  - Assets/Scripts/MainMenu/PlayButtonUI.cs
+
+## Entry 31
+- Done: 23:07 25/03/2026
+- Task: UPDATE TASK: Runtime Pet Storage, Autosave, Battle Checkpoint And Firefox Sample Logic - rollback editor-only save position bypass to keep always-on restore flow
+- Files:
+  - Assets/Scripts/Core/SaveGameService.cs
+  - Assets/Scripts/MainMenu/PlayButtonUI.cs
+
+## Entry 32
+- Done: 23:23 25/03/2026
+- Task: Tilemap Runtime Refresh To Clear Stale Ghost Tiles On Scene Load
+- Files:
+  - Assets/Scripts/World/TilemapSceneRefresh.cs
+  - Assembly-CSharp.csproj
+
+## Entry 33
+- Done: 23:46 25/03/2026
+- Task: UPDATE TASK: Runtime Pet Storage, Autosave, Battle Checkpoint And Firefox Sample Logic - detach persistent managers from scene System root to keep only map camera in gameplay scene
+- Files:
+  - Assets/Scripts/Core/SingletonBehaviour.cs
+  - Assets/Scripts/World/Encounter/EncounterManager.cs
+  - Assets/Scripts/UI/Core/UIManager.cs

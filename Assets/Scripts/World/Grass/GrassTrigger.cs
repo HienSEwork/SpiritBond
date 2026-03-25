@@ -1,3 +1,4 @@
+using SpiritBond.Core;
 using UnityEngine;
 
 namespace SpiritBond.World.Grass
@@ -25,12 +26,20 @@ namespace SpiritBond.World.Grass
             }
 
             Debug.Log($"[GrassTrigger] Player entered grass trigger: {gameObject.name}");
-            grassSpawner?.TrySpawnEncounter();
+            if (!GameplayTriggerGuard.IsBlocked)
+            {
+                grassSpawner?.TrySpawnEncounter();
+            }
         }
 
         private void OnTriggerStay2D(Collider2D other)
         {
-            // Keep empty to avoid repeated encounter/log spam while player stands inside grass.
+            if (!other.CompareTag("Player") || GameplayTriggerGuard.IsBlocked)
+            {
+                return;
+            }
+
+            grassSpawner?.TrySpawnEncounter();
         }
 
         private void OnTriggerExit2D(Collider2D other)

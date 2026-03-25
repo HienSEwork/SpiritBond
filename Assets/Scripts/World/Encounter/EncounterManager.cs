@@ -7,6 +7,8 @@ namespace SpiritBond.World.Encounter
 {
     public class EncounterManager : SingletonBehaviour<EncounterManager>
     {
+        private static bool creatingRuntimeInstance;
+
         [SerializeField] private string battleSceneName = "Battle"; // Assign in Inspector
 
         public PetData PendingEnemyPetData { get; private set; }
@@ -16,6 +18,30 @@ namespace SpiritBond.World.Encounter
         public bool HasPendingCheckpoint { get; private set; }
 
         protected override bool DontDestroyOnLoadEnabled => true;
+
+        protected override void Awake()
+        {
+            if (Instance != null && Instance != this)
+            {
+                Destroy(this);
+                return;
+            }
+
+            if (!creatingRuntimeInstance && transform.childCount > 0)
+            {
+                creatingRuntimeInstance = true;
+
+                GameObject runtimeHost = new GameObject("EncounterManager");
+                EncounterManager runtimeManager = runtimeHost.AddComponent<EncounterManager>();
+                runtimeManager.battleSceneName = battleSceneName;
+
+                creatingRuntimeInstance = false;
+                Destroy(this);
+                return;
+            }
+
+            base.Awake();
+        }
 
         public void StartEncounter(PetData enemyPetData)
         {

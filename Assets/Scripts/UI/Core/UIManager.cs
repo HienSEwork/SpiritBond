@@ -5,6 +5,33 @@ namespace SpiritBond.UI.Core
 {
     public class UIManager : SingletonBehaviour<UIManager>
     {
+        private static bool creatingRuntimeInstance;
+
+        protected override bool DontDestroyOnLoadEnabled => true;
+
+        protected override void Awake()
+        {
+            if (Instance != null && Instance != this)
+            {
+                Destroy(this);
+                return;
+            }
+
+            if (!creatingRuntimeInstance && transform.childCount > 0)
+            {
+                creatingRuntimeInstance = true;
+
+                GameObject runtimeHost = new GameObject("UIManager");
+                runtimeHost.AddComponent<UIManager>();
+
+                creatingRuntimeInstance = false;
+                Destroy(this);
+                return;
+            }
+
+            base.Awake();
+        }
+
         public void Toggle(UIPanel panel)
         {
             if (panel == null)
